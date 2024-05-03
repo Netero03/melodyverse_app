@@ -1,62 +1,45 @@
+// App.jsx
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import axios from 'axios';
-import * as jwt_decode from 'jwt-decode'; // For decoding JWT tokens
-
-import Signup from './components/Signup';
-import Login from './components/Login';
-import PostList from './components/PostList';
-import PrivateRoute from './components/PrivateRoute'; // Component for protected routes
+import { decodeToken } from './utils/authUtils'; // Import decodeToken function
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import PostList from './pages/PostList';
+import VerifyEmailPage from './pages/VerifyEmailPage';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     // Check for existing JWT token in local storage
     const token = localStorage.getItem('melodyverse-token');
     if (token) {
-      const decodedToken = jwt_decode(token);
-      if (decodedToken.exp > Date.now() / 1000) { // Check if token is not expired
+      const decodedToken = decodeToken(token); // Use decodeToken function
+      if (decodedToken && decodedToken.exp > Date.now() / 1000) {
         setIsLoggedIn(true);
-        setUser(decodedToken);
       } else {
-        localStorage.removeItem('melodyverse-token'); // Remove expired token
+        localStorage.removeItem('melodyverse-token');
       }
     }
   }, []);
 
-  const handleLogin = async (data) => {
-    try {
-      const response = await axios.post('/api/users/login', data);
-      localStorage.setItem('melodyverse-token', response.data.token);
-      setIsLoggedIn(true);
-      setUser(jwt_decode(response.data.token));
-    } catch (err) {
-      console.error(err);
-      // Handle login errors (display error message)
-    }
+  const handleLogin = (token) => {
+    setIsLoggedIn(true);
   };
 
   const handleLogout = () => {
     localStorage.removeItem('melodyverse-token');
     setIsLoggedIn(false);
-    setUser(null);
   };
 
   return (
-
     <Routes>
-      <Route
-        path="/signup"
-        element={!isLoggedIn ? <Signup /> : <Navigate replace to="/posts" />}
-      />
+      <Route path="/signup" element={!isLoggedIn ? <Signup /> : <Navigate replace to="/login" />} />
       <Route path="/login" element={!isLoggedIn ? <Login onLogin={handleLogin} /> : <Navigate replace to="/posts" />} />
-      <Route
-        path="/posts"
-        element={<PostList user={user} />}/>
+      <Route path="/posts" element={isLoggedIn ? <PostList onLogout={handleLogout} /> : <Navigate to="/login" />} />
+      <Route path="*" element={<Navigate to="/login" />} />
+      <Route path="/verifyemail" element={<VerifyEmailPage/>} /> 
     </Routes>
-
   );
 };
 
