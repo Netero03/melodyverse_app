@@ -2,10 +2,12 @@
   "name": "melodyverse-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node server"
+    "start": "node index.js", 
+    "test": "echo \"No test specified\"", 
+    "deploy": "vercel --prod",
+    "dev": "vercel dev" 
   },
   "keywords": [],
   "author": "",
