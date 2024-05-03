@@ -9,6 +9,8 @@ const userRoutes = require('./routes/userRoutes'); // Placeholder for future use
 const app = express();
 
 // Connect to MongoDB database
+
+// Connect this URI below instead
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error:', err));

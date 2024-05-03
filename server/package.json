@@ -5,9 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js", 
-    "test": "echo \"No test specified\"", 
-    "deploy": "vercel --prod",
-    "dev": "vercel dev" 
+    "test": "echo \"No test specified\""
   },
   "keywords": [],
   "author": "",
