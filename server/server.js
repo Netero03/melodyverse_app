@@ -9,7 +9,7 @@ const userRoutes = require('./routes/userRoutes'); // Placeholder for future use
 const app = express();
 
 // Connect to MongoDB database
-mongoose.connect("mongodb+srv://jatinletsgo:8ZzwK33vZ076iqJF@cluster0.97awjld.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
