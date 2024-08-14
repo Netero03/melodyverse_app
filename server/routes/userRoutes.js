@@ -68,7 +68,7 @@ const sendVerificationEmail = async (email, token) => {
     from: 'Your Name <your-email@gmail.com>',
     to: email,
     subject: 'Verify your email address',
-    text: `Please click on the following link to verify your email address: http://localhost:3000/verify?token=${token}`,
+    text: `Please click on the following link to verify your email address: http://melodyverse-app.vercel.app/verify?token=${token}`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

@@ -2,10 +2,10 @@
   "name": "melodyverse-app",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "vercel": "node server.js",
+    "start": "node index.js",
+    "vercel": "node index.js",
     "test": "echo \"No test specified\""
   },
   "keywords": [],

@@ -1,4 +1,4 @@
-## In this MERN stack web app you can Login/Register And scroll infinite posts. Consists tech stack as ReactJs, NodeJs, ExpressJs, MongoDb. And featureslike JWT, Authentication, verification, etc.
+## In this MERN stack web app you can Login/Register And scroll infinite posts. Consists tech stack as ReactJs, NodeJs, ExpressJs, MongoDb. And features like JWT, Authentication, User Login/Registration, bcrypt(Data encryption/decryption) etc.
 ![alt text](image.png)
 ![alt text](image-1.png)
 ![alt text](image-2.png)
