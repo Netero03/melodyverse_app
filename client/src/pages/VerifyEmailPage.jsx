@@ -10,7 +10,7 @@ const VerifyEmailPage = () => {
   useEffect(() => {
     if (token) {
       // Make a request to your backend to verify the token
-      axios.post('http://localhost:5000/api/signup', { token })
+      axios.post('https://melodyverse-backend.vercel.app/api/signup', { token })
         .then(response => {
           // Handle successful verification
           console.log(response.data.message); // Display success message

@@ -36,7 +36,7 @@ const Login = ({ onLogin }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/users/login', { email, password });
+      const response = await axios.post('https://melodyverse-backend.vercel.app/api/users/login', { email, password });
       const token = response.data.token;
       localStorage.setItem('melodyverse-token', token);
       onLogin(token); // Pass the token to the parent component (App.jsx)

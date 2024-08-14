@@ -3,7 +3,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
-const { v4: uuidv4 } = require('uuid'); // Import uuidv4 function for generating tokens
+const { v4: uuidv4 } = require('uuid');
 
 const router = express.Router();
 
@@ -32,7 +32,12 @@ router.post('/signup', async (req, res) => {
     await storeVerificationToken(req.body.email, verificationToken);
 
     // Send verification email
-    await sendVerificationEmail(req.body.email, verificationToken);
+    try {
+      await sendVerificationEmail(req.body.email, verificationToken);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'Error sending verification email' });
+    }
 
     res.status(201).json({ message: 'User created successfully. Verification email sent.' });
   } catch (err) {
@@ -44,6 +49,9 @@ router.post('/signup', async (req, res) => {
 // Function to store verification token and email in the database
 const storeVerificationToken = async (email, token) => {
   // Store the token and email address in your database
+  const user = await User.findOne({ email });
+  user.verificationToken = token;
+  await user.save();
 };
 
 // Function to send a verification email
@@ -71,6 +79,19 @@ const sendVerificationEmail = async (email, token) => {
     }
   });
 };
+
+// Verify email route
+router.get('/verify', async (req, res) => {
+  const token = req.query.token;
+  const user = await User.findOne({ verificationToken: token });
+  if (user) {
+    user.emailVerified = true;
+    await user.save();
+    res.json({ message: 'Email verified successfully' });
+  } else {
+    res.status(404).json({ message: 'Invalid verification token' });
+  }
+});
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;

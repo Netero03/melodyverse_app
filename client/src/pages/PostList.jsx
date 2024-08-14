@@ -17,7 +17,7 @@ const PostList = ({ onLogout }) => { // Receive onLogout prop
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`http://localhost:5000/api/posts?page=${pageNumber}`);
+      const response = await axios.get(`https://melodyverse-backend.vercel.app/api/posts?page=${pageNumber}`);
       const newPosts = response.data.posts;
       if (newPosts.length === 0) {
         // If no new posts are available, set hasMore to false

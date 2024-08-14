@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "vercel": "node index.js",
     "test": "echo \"No test specified\""
   },
   "keywords": [],

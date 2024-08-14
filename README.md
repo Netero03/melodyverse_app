@@ -1,6 +1,8 @@
+## In this MERN stack web app you can Login/Register And scroll infinite posts. Consists tech stack as ReactJs, NodeJs, ExpressJs, MongoDb. And featureslike JWT, Authentication, verification, etc.
 ![alt text](image.png)
 ![alt text](image-1.png)
 ![alt text](image-2.png)
+
 ## Installation Steps
 
 1. **Install Node.js**: Make sure you have Node.js installed on your system. You can download it from the [official website](https://nodejs.org/en/download/).
