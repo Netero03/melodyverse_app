@@ -20,6 +20,9 @@ app.use(cors()); // Enable CORS if needed
 app.use(bodyParser.json()); // Parse JSON request bodies (optional)
 
 // Routes
+app.post('/', (req, res) => {
+  console.log("Hello Verse")
+});
 app.use('/api/posts', postRoutes); // Mount post routes under '/api/posts' prefix
 app.use('/api/users', userRoutes); // Placeholder for user routes (implement later)
 
@@ -32,3 +35,4 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 5000;  
 
 app.listen(port, () => console.log(`Server listening on port ${port}`));
+
