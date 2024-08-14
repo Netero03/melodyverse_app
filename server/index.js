@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser'); // For parsing request bodies (optional)
 const cors = require('cors'); // For enabling CORS (if needed)
 const config = require('./config'); // Load JWT secret and other configurations
-const postRoutes = require('../routes/postRoutes'); // Import post routes
-const userRoutes = require('../routes/userRoutes'); // Placeholder for future user routes
+const postRoutes = require('./routes/postRoutes'); // Import post routes
+const userRoutes = require('./routes/userRoutes'); // Placeholder for future user routes
 
 const app = express();
 
@@ -20,9 +20,6 @@ app.use(cors()); // Enable CORS if needed
 app.use(bodyParser.json()); // Parse JSON request bodies (optional)
 
 // Routes
-app.post('/', (req, res) => {
-  console.log("Hello Verse")
-});
 app.use('/api/posts', postRoutes); // Mount post routes under '/api/posts' prefix
 app.use('/api/users', userRoutes); // Placeholder for user routes (implement later)
 
