@@ -47,19 +47,19 @@ const Signup = () => {
         profilePicture
       });
       console.log('Signup successful:', response.data);
-        if (response.data.success) {
-            setSuccess('Welcome to MelodyVerse! A verification email has been sent.');
-            navigate('/login'); // Redirect to login page after successful signup
-            setUsername(''); // Reset form fields
-            setEmail('');
-            setPassword('');
-            setConfirmPassword('');
-            setName('');
-            setProfilePicture('');
-            setIsChecked(false);
-        } else {
-            setError(response.data.message || 'Signup failed');
-        }
+      if (response.data.success) {
+        setSuccess('Welcome to MelodyVerse! A verification email has been sent.');
+        navigate('/login'); // Redirect to login page after successful signup
+        setUsername(''); // Reset form fields
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setName('');
+        setProfilePicture('');
+        setIsChecked(false);
+      } else {
+        setError(response.data.message || 'Signup failed');
+      }
       localStorage.setItem('token', response.data.token); // Store token in local storage (temporary solution)
     } catch (err) {
       setError(err.response.data.message);
@@ -154,7 +154,7 @@ const Signup = () => {
           Signup
         </button>
       </form>
-      
+
       <p>
         Already Have an Account?{' '}
         <a href="/login">Login</a>
